@@ -48,9 +48,27 @@ int main(int argc, char** argv)
 
 		p = &n;   // 포인터 변수 p 에  'n의 주소' 대입
 		printf("p = %p, &n = %p 같다 \n", p, &n);
-
 	}
 
+	// 포인터의 포인터 (이중포인터)
+	{
+		int n1 = 300, n2 = 500;
+		int *p = &n1;  // int * 타입 p
+		int **pp = &p;      // int * * 타입 pp
+
+
+		// 참조연산자 * 를 사용해서 주소위치를 찾아가 해당 값 사용 가능
+		printf("n1 = %d, *p = %d, **pp = %d\n", n1, *p, **pp);
+
+		n1 = 888;
+
+		printf("n1 = %d, *p = %d, **pp = %d\n", n1, *p, **pp);
+
+		*p = 222;
+
+		printf("n1 = %d, *p = %d, **pp = %d\n", n1, *p, **pp);
+
+	}
 
 
 

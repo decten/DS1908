@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{E11067C5-B665-4BA8-8009-006947732836}</ProjectGuid>
-    <RootNamespace>My02PreDS</RootNamespace>
+    <ProjectGuid>{B67DB537-8D62-414C-B054-4F31BDB56BDD}</ProjectGuid>
+    <RootNamespace>My03ADT</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -115,30 +115,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.c">
+    <ClCompile Include="ArraySum.c">
       <SubType>
       </SubType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Memory.c">
+    <ClCompile Include="IterateMain.c">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Time.c">
-      <SubType>
-      </SubType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Struct1.c">
+    <ClCompile Include="WalletMain.c">
       <SubType>
       </SubType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Pointer1.c">
-      <SubType>
-      </SubType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Wallet.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Wallet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

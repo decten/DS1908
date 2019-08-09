@@ -15,20 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Array.c">
+    <ClCompile Include="ArraySum.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Pointer1.c">
+    <ClCompile Include="Wallet.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Struct1.c">
+    <ClCompile Include="WalletMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Time.c">
+    <ClCompile Include="IterateMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Memory.c">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Wallet.h">
       <Filter>소스 파일</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>
