@@ -88,6 +88,61 @@ int main(int argc, char** argv)
 
 	list_destroy(&myList);  // 리스트 제거
 
+	{
+		//               list_insert, list_remove, list_get
+		// ArrayList  :       BAD         BAD        GOOD
+		// LinkedList :      GOOD        GOOD         BAD
+
+		printf("---------------------------------------------------\n");
+		list_init(&myList);
+		int test_size = 30000;
+		clock_t start, end;
+		Data data;
+		printf("프로파일링 시작: 스냅샷 - 아무키나 누르세요\n");
+		_getch();
+
+		printf("%d 개 insert ...\n", test_size);
+		start = clock(); // 시간측정
+		for (int i = 0; i < test_size; i++)
+		{
+			list_insert(&myList, 0, i);
+		}
+		end = clock();
+		printf("현재 리스트 length: %d\n", list_length(&myList));
+		printf("insert 결과 : %ld ms 경과\n", end - start);
+
+		//-----------------------------------------
+		printf("아무키나 누르면 다음 테스트 진행합니다\n");
+		_getch();
+		printf("%d 개 get...\n", test_size);
+
+		start = clock();  // 시간측정 싲가
+		for (int i = 0; i < test_size; i++)
+		{
+			list_get(&myList, i, &data);
+		}
+		end = clock();
+		printf("get 결과 : %ld ms 경과\n", end - start);
+
+
+		printf("아무키나 누르면 다음 테스트 진행합니다\n");
+		_getch();
+		printf("%d 개 remove ... \n", test_size);
+		start = clock(); // 시간측정 시작
+		for (int i = 0; i < test_size; i++)
+		{
+			list_remove(&myList, 0);
+		}
+		end = clock();
+		printf("현재 리스트 length : %d\n", list_length(&myList));
+		printf("remove 결과 : %ld ms 경과\n", end - start);
+
+
+		printf("아무키나 누르면 종료됩니다 : 스냅샷 \n");
+		_getch();
+		list_destroy(&myList);
+	}
+
 
 	printf("\n아무키나 입력하시면 프로그램 종료됩니다\n");
 	_getch();

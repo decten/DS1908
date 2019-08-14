@@ -23,7 +23,20 @@ void list_init(List *pList)
 // 리스트 제거
 void list_destroy(List *pList)
 {
-	// TODO
+	list_init_iter(pList);
+	Node *pPrev = NULL;
+	while (list_hasNext(pList))
+	{
+		pPrev = pList->pCurrent;
+		list_next(pList);  // pCurrent 이동
+		free(pPrev);   // 노드 메모리 해제
+	}
+
+	pList->pHead = NULL;
+	pList->pTail = NULL;
+	pList->numData = 0;
+
+	printf("리스트 소멸\n");
 }
 
 // 데이터 추가
@@ -127,7 +140,8 @@ int list_remove(List *pList, int n)
 	free(pList->pCurrent);
 	
 	pList->numData--;  // 리스트 size 감소
-	printf("%d 번째 데이터 삭제\n", n);
+	
+	//printf("%d 번째 데이터 삭제\n", n);
 
 	return SUCCESS;
 }
@@ -164,6 +178,56 @@ int list_hasNext(List *pList)
 
 	return SUCCESS;
 }
-//
-//
-//int list_insert(List* pList, int n, Data data);   // 데이터 삽입: n번째 위치에 데이터 삽입
+
+// 데이터 삽입: n번째 위치에 데이터 삽입
+int list_insert(List* pList, int n, Data data)
+{
+	if (n > pList->numData) return FAIL;   // >= 이 아니라 > 이다!
+	// ex) numData => 4
+	// insert 가능 인덱스 : 0, 1, 2, 3, 4
+	// get, remove, set 가능 인덱스 : 0, 1, 2, 3
+
+	// ex) numData => 0
+	// insert 가능 인덱스 : 0
+
+	// 새로운 node 생성
+	Node *pNewNode = (Node*)malloc(sizeof(Node));
+	memset(pNewNode, 0, sizeof(Node));
+	pNewNode->data = data;
+
+	if (pList->numData == 0) // #1 : 첫번째 데이터 insert 하는 경우
+	{
+		pList->pHead->pNext = pNewNode;
+		pList->pTail = pNewNode;
+	}
+	else if (pList->numData == n)// #2 : 맨 끝 뒤에 insert 하는 경우
+	{
+		pList->pTail->pNext = pNewNode;
+		pList->pTail = pNewNode;
+	}
+	else // #3 : 나머지.
+	{
+		// n번째 노드 찾기..
+		// 이전노드 (prev node) 또한 알아야 한다.
+		list_init_iter(pList);
+		int i = 0;
+		Node *pPrev = NULL; // 이전 노드를 가리킬 포인터
+		while (list_hasNext(pList))
+		{
+			pPrev = pList->pCurrent;  // pCurrent 이동전에 pCurrent값을 이전 노드 값으로 기억해야 함
+			list_next(pList);    // pCurrent 값 이동
+			if (i >= n) break;    // n번째 노드 찾으면 종료
+			i++;
+		}
+
+		// 위 while 문이 끝나면
+		// pCurrent(n 번째 노드),  pPrev(n -1 번째 노드) 가 결정됨
+
+		// 삽입동작 수행
+		pPrev->pNext = pNewNode;   // 이전노드는 새로운 노드를 가리키고
+		pNewNode->pNext = pList->pCurrent;    // 새로운 노드는 current 를 가리킴
+	}
+
+	(pList->numData)++;    // 개수증가
+	return FAIL;
+}
